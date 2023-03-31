@@ -21,3 +21,18 @@ target_link_libraries(Tutorial PUBLIC MathFunctions)
 target_include_directories(Tutorial PUBLIC
                           "${PROJECT_BINARY_DIR}"
                           "${PROJECT_SOURCE_DIR}/MathFunctions" )
+#2-7
+option(USE_MYMATH "Use tutorial provided math implementation" ON)
+#2-8
+if(USE_MYMATH)
+  add_subdirectory(MathFunctions)
+  list(APPEND EXTRA_LIBS MathFunctions)
+  list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
+endif()
+#2-9
+target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS})
+#2-10
+target_include_directories(Tutorial PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           ${EXTRA_INCLUDES}        )
+#

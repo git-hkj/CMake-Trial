@@ -173,6 +173,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\lwnkuh2\Desktop\Trials\CMake-Trial\MathFunctions\MathFunctions.vcxproj">
+      <Project>{805E3A7C-0650-3695-8EED-1B62DBFAB30A}</Project>
+      <Name>MathFunctions</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\lwnkuh2\Desktop\Trials\CMake-Trial\Tutorial.vcxproj">
       <Project>{E18681B4-0123-3F9C-BB31-49884D8D1BD5}</Project>
       <Name>Tutorial</Name>

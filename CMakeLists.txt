@@ -13,3 +13,11 @@ project(Tutorial VERSION 1.0)
 configure_file(TutorialConfig.h.in TutorialConfig.h)
 #9
 target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}" )
+#2-2
+add_subdirectory(MathFunctions)
+#2-3
+target_link_libraries(Tutorial PUBLIC MathFunctions)
+#2-4
+target_include_directories(Tutorial PUBLIC
+                          "${PROJECT_BINARY_DIR}"
+                          "${PROJECT_SOURCE_DIR}/MathFunctions" )

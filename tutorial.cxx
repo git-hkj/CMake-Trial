@@ -4,6 +4,8 @@
 #include <string>
 //11
 #include "TutorialConfig.h"
+//2-5
+#include "MathFunctions.h"
 
 int main(int argc, char* argv[])
 {
@@ -20,7 +22,7 @@ int main(int argc, char* argv[])
   const double inputValue = std::stod(argv[1]);
 
   // calculate square root
-  const double outputValue = sqrt(inputValue);
+  const double outputValue = mysqrt(inputValue); //2-6
   std::cout << "The square root of " << inputValue << " is " << outputValue
             << std::endl;
   return 0;

@@ -3,4 +3,4 @@
 #define Tutorial_VERSION_MINOR 0
 
 //2-13
-/* #undef USE_MYMATH */
+#define USE_MYMATH

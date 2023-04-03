@@ -4,22 +4,21 @@
 #include <string>
 //11
 #include "TutorialConfig.h"
-//2-5
-#include "MathFunctions.h"
-//2-11
+
+//2-5,2-11
 #ifdef USE_MYMATH
 #  include "MathFunctions.h"
 #endif
 
 int main(int argc, char* argv[])
 {
-  //if (argc < 2) 
+  if (argc < 2) 
   {
     // report version //12
     std::cout << argv[0] << " Version " << Tutorial_VERSION_MAJOR << "."
           << Tutorial_VERSION_MINOR << std::endl;
     std::cout << "Usage: " << argv[0] << " number" << std::endl;
-    //return 1;
+    return 1;
   }
 
   // convert input to double
@@ -31,6 +30,7 @@ int main(int argc, char* argv[])
 #else
   const double outputValue = sqrt(inputValue);
 #endif
+  
   //printing the results
   std::cout << "The square root of " << inputValue << " is " << outputValue
             << std::endl;

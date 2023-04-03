@@ -1,45 +1,58 @@
-#1
+# TODO 4: Update the minimum required version to 3.15
+
 cmake_minimum_required(VERSION 3.10)
-#2
-project(Tutorial)
-#3
-add_executable(Tutorial tutorial.cxx)
-#6
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-#7
+
+# set the project name and version
 project(Tutorial VERSION 1.0)
-#8
-configure_file(TutorialConfig.h.in TutorialConfig.h)
-#9
-target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}" )
-#2-2
-add_subdirectory(MathFunctions)
-#2-3
-target_link_libraries(Tutorial PUBLIC MathFunctions)
-#2-4
-target_include_directories(Tutorial PUBLIC
-                          "${PROJECT_BINARY_DIR}"
-                          "${PROJECT_SOURCE_DIR}/MathFunctions" )
-#2-7
+
+# specify the C++ standard
+
+# TODO 5: Create helper variables to determine which compiler we are using:
+# * Create a new variable gcc_like_cxx that is true if we are using CXX and
+#   any of the following compilers: ARMClang, AppleClang, Clang, GNU, LCC
+# * Create a new variable msvc_cxx that is true if we are using CXX and MSVC
+# Hint: Use set() and COMPILE_LANG_AND_ID
+
+# TODO 6: Add warning flag compile options to the interface library
+# tutorial_compiler_flags.
+# * For gcc_like_cxx, add flags -Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused
+# * For msvc_cxx, add flags -W3
+# Hint: Use target_compile_options()
+
+# TODO 7: With nested generator expressions, only use the flags for the
+# build-tree
+# Hint: Use BUILD_INTERFACE
+
+# should we use our own math functions
 option(USE_MYMATH "Use tutorial provided math implementation" ON)
-#2-8
+
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file(TutorialConfig.h.in TutorialConfig.h)
+
+# add the MathFunctions library
 if(USE_MYMATH)
   add_subdirectory(MathFunctions)
   list(APPEND EXTRA_LIBS MathFunctions)
-  list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
 endif()
-#2-9
+
+# add the executable
+add_executable(Tutorial tutorial.cxx)
+
+#4-1 
+#create an interface library, tutorial_compiler_flags and then 
+add_library(tutorial_compiler_flags INTERFACE)
+#use target_compile_features() to add the compiler feature cxx_std_11
+target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
+#4-2
+#link executable Target to new tutorial_compiler_flags library
+target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS} tutorial_compiler_flags)
+# TODO 2: Link to tutorial_compiler_flags
+
 target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS})
-#2-10
+
+# add the binary tree to the search path for include files
+# so that we will find TutorialConfig.h
 target_include_directories(Tutorial PUBLIC
                            "${PROJECT_BINARY_DIR}"
-                           ${EXTRA_INCLUDES}        )
-#3-2
-if(USE_MYMATH)
-  add_subdirectory(MathFunctions)
-  list(APPEND EXTRA_LIBS MathFunctions)
-endif()
-#3-3
-target_include_directories(Tutorial PUBLIC
-                           "${PROJECT_BINARY_DIR}" )
+                           )

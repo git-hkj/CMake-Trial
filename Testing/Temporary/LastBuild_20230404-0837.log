@@ -1,7 +1,0 @@
-MSBuild version 17.5.1+f6fdcf537 for .NET Framework
-
-  Checking Build System
-  MathFunctions.vcxproj -> C:\Users\lwnkuh2\Desktop\Trials\CMake-Trial\MathFunctions\Debug\MathFunctions.lib
-  Building Custom Rule C:/Users/lwnkuh2/Desktop/Trials/CMake-Trial/CMakeLists.txt
-  Tutorial.vcxproj -> C:\Users\lwnkuh2\Desktop\Trials\CMake-Trial\Debug\Tutorial.exe
-  Building Custom Rule C:/Users/lwnkuh2/Desktop/Trials/CMake-Trial/CMakeLists.txt

@@ -32,7 +32,6 @@ int main(int argc, char* argv[])
 #endif
   
   //printing the results
-  std::cout << "The square root of " << inputValue << " is " << outputValue
-            << std::endl;
+  std::cout << "The square root of " << inputValue << " is " << outputValue<< std::endl;
   return 0;
 }

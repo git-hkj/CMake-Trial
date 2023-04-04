@@ -60,15 +60,11 @@ enable_testing()
 # TODO 5-6: Add a test called Runs which runs the following command:
 add_test(NAME Runs COMMAND Tutorial 25)
 
-# TODO 5-7: Add a test called Usage which runs the following command:
-# $ Tutorial
-# Make sure the expected output is displayed.
+# TODO 5-7: Add a test called Usage which use the PASS_REGULAR_EXPRESSION test property to verify that the output of the test contains certain strings
 add_test(NAME Usage COMMAND Tutorial)
 set_tests_properties(Usage  PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number"  )
 
-# TODO 5-8: Add a test which runs the following command:
-# $ Tutorial 4
-# Make sure the result is correct.
+# TODO 5-8: Add a test which runs and verifies the computed value is truly the square root.
 add_test(NAME StandardUse COMMAND Tutorial 4)
 set_tests_properties(StandardUse   PROPERTIES PASS_REGULAR_EXPRESSION "4 is 2"  )
 

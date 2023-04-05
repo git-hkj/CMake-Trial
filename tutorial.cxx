@@ -7,7 +7,7 @@
 
 //2-5,2-11
 //10
-#  include "MathFunctions.h"
+#  include "MathFunctions/MathFunctions.h"
 
 int main(int argc, char* argv[])
 {
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 
   // calculate square root
 
-  const double outputValue = mathfunctions::sqrtmysqrt(inputValue);
+  const double outputValue = mathfunctions::sqrt(inputValue);
 
   
   //printing the results

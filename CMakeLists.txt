@@ -44,7 +44,7 @@ add_executable(Tutorial tutorial.cxx)
 
 #4-2
 #link executable Target to new tutorial_compiler_flags library
-target_link_libraries(Tutorial PUBLIC ${EXTRA_LIBS} tutorial_compiler_flags)
+target_link_libraries(Tutorial PUBLIC MathFunctions tutorial_compiler_flags)
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
@@ -52,11 +52,47 @@ target_include_directories(Tutorial PUBLIC
                            "${PROJECT_BINARY_DIR}"
                            )
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # TODO 5-3: Install Tutorial in the bin directory
 install(TARGETS Tutorial DESTINATION bin)
 
 # TODO 5-4: Install TutorialConfig.h to the include directory
 install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h" DESTINATION include )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # TODO 5-5: Enable testing
 enable_testing()

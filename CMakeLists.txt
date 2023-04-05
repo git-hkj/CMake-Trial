@@ -71,7 +71,11 @@ install(TARGETS Tutorial DESTINATION bin)
 # TODO 5-4: Install TutorialConfig.h to the include directory
 install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h" DESTINATION include )
 
-
+#11-1: explicitly install the generated MathFunctionsTargets.cmake file
+install(EXPORT MathFunctionsTargets
+  FILE MathFunctionsTargets.cmake
+  DESTINATION lib/cmake/MathFunctions
+)
 
 
 

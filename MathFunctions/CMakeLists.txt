@@ -57,6 +57,11 @@ set(installable_libs MathFunctions tutorial_compiler_flags)
 if(TARGET SqrtLibrary)
   list(APPEND installable_libs SqrtLibrary)
 endif()
+#11-1: explicitly EXPORT the MathFunctions library
+install(TARGETS ${installable_libs}
+        EXPORT MathFunctionsTargets
+        DESTINATION lib)
+
 install(TARGETS ${installable_libs} DESTINATION lib)
 
 # TODO 5-2: Install the library headers to the include folder.

@@ -2,8 +2,12 @@
 add_library(MathFunctions MathFunctions.cxx)
 
 #3-1: state that anybody linking  needs to include the current source dir to find MathFunctions.h
+#11-2: to update the MathFunctions target_include_directories() to understand that it needs different INTERFACE locations when being used from within the build directory and from an install / package.
 target_include_directories(MathFunctions
-          INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} )
+                           INTERFACE
+                            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+                            $<INSTALL_INTERFACE:include>
+                           )
 
 
 # should we use our own math functions

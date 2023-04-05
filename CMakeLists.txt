@@ -76,11 +76,35 @@ install(EXPORT MathFunctionsTargets
   FILE MathFunctionsTargets.cmake
   DESTINATION lib/cmake/MathFunctions
 )
+#11-3: Helpers functions for creating config files that can be included by other projects to find and use a package.
+include(CMakePackageConfigHelpers)
+
+#11-4:to generate the config file that includes the exports
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfig.cmake"
+  INSTALL_DESTINATION "lib/cmake/example"
+  NO_SET_AND_CHECK_MACRO
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO
+  )
+
+#11-5: writes a file which is used by find_package(), documenting the version and compatibility of the desired package
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfigVersion.cmake"
+  VERSION "${Tutorial_VERSION_MAJOR}.${Tutorial_VERSION_MINOR}"
+  COMPATIBILITY AnyNewerVersion
+)
+
+#11-6: set both generated files to be installed
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfig.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfigVersion.cmake
+  DESTINATION lib/cmake/MathFunctions
+  )
 
 
-
-
-
+  #11-7:to make is usable from a build directory
+  export(EXPORT MathFunctionsTargets
+  FILE "${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsTargets.cmake" )
 
 
 

@@ -1,5 +1,5 @@
 # TODO 1: Add a library called MathFunctions
-add_library(MathFunctions mysqrt.cxx ${CMAKE_CURRENT_BINARY_DIR}/Table.h )
+add_library(MathFunctions MathFunctions.cxx)
 
 #3-1: state that anybody linking  needs to include the current source dir to find MathFunctions.h
 target_include_directories(MathFunctions

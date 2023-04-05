@@ -88,3 +88,17 @@ do_test(Tutorial 0.0001 "0.0001 is 0.01")
 #TODO Step 6
 #to enable dashboard submissions to CDash by including the CTest
 include(CTest)
+
+
+#9-1:use CPack to create platform specific installers
+#To search for compiler-provided system runtime libraries and add install rules for them
+include(InstallRequiredSystemLibraries)
+#To set some CPack variables to where we have stored the license
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+#To set some CPack variables to where we have stored the version information for this project
+set(CPACK_PACKAGE_VERSION_MAJOR "${Tutorial_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
+#To select a file format for the source package
+set(CPACK_SOURCE_GENERATOR "TGZ")
+#Include the CPack module which will use these variables and some other properties of the current system to setup an installer.
+include(CPack)

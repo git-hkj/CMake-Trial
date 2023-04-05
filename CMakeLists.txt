@@ -22,18 +22,22 @@ target_compile_options(
   "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>" )
 
 
-# should we use our own math functions
-option(USE_MYMATH "Use tutorial provided math implementation" ON)
+#10-1: to control the default behavior of add_library(), and allow control over how libraries without an explicit type (STATIC, SHARED, MODULE or OBJECT) are built.
+# control where the static and shared libraries are built so that on windows
+# we don't need to tinker with the path to run the executable
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
+
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
 
 # configure a header file to pass some of the CMake settings
 # to the source code
 configure_file(TutorialConfig.h.in TutorialConfig.h)
 
-# add the MathFunctions library
-if(USE_MYMATH)
-  add_subdirectory(MathFunctions)
-  list(APPEND EXTRA_LIBS MathFunctions)
-endif()
+#10-1:  add the MathFunctions library
+add_subdirectory(MathFunctions)
 
 # add the executable
 add_executable(Tutorial tutorial.cxx)
